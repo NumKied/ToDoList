@@ -1,45 +1,21 @@
-var data = (localStorage.getItem('list')) ? JSON.parse(localStorage.getItem('list')):{
-  board: []
-};
-todoList();
-
 /* ADD BOARD NAME*/
 document.getElementById('addJBoard').addEventListener('click' ,function () {
   var value = document.getElementById('boardName').value;
+
   if (value) addBoard(value);
-   data.board.push(value);
-   dataObjectUpdated();
+
 });
 
 document.getElementById('boardName').addEventListener('keypress' ,function (ev) {
   if (ev.keyCode == 13) {
   var value = document.getElementById('boardName').value;
   if (value) addBoard(value);
-   data.board.push(value);
-   dataObjectUpdated();
   }
 });
-
-function todoList() {
-  if (!data.board.length) return;
-  for (var i = 0; i < data.board.length; i++) {
-    var value = data.board[i];
-    addBoard(value);
-  }}
-
-function dataObjectUpdated() {
-  localStorage.setItem('list', JSON.stringify(data));
-}
-
 /*DELETE BOARD*/
 function removeBoard() {
   var item = this.parentNode;
   var parent = this.parentNode.parentNode;
-  var id = parent.id;
-  var value = item.innerText;
-  data.board.splice(data.board.indexOf(value), 1);
-  console.log(data);
-  dataObjectUpdated();
   parent.removeChild(item);
 }
 /*ADD BOARD*/
@@ -90,6 +66,9 @@ function addBoard(text) {
   var AddTaskButtonName = document.createTextNode('Add new task');
 
   var x = document.createTextNode('✗');
+
+
+
 
 
   list.appendChild(li);
